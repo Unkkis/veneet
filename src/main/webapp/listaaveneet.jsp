@@ -4,16 +4,24 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <script src="scripts/main.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Roboto&display=swap" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Veneiden listaus</title>
+<style>
+html { background-image:url(images/marina2.jpg); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
 </head>
-<body>
-<body>
-
+<body id="listaaveneet">
 	<div class="container">
-	<table  id="listaus" border="1" >
+	<table  id="listaus" border="1" class="listaus">
 		<thead>
 			<tr>
 				<th colspan="7"><a href="lisaavene.jsp">Lisää uusi vene</a></th>
@@ -38,26 +46,30 @@
 			</tbody>
 		</table>
 	</div>
+</body>
 <script>
 $(document).ready(function(){
-	
 	haeVeneet();
+	
+	$("#listaaveneet").on("keydown", function(event){
+		if(event.which==13){ //Kun Enteriä on painettu, ajetaan haku
+		haeVeneet();
+		 }
+	});
+		
 	$("#hakunappi").click(function(){		
 		haeVeneet();
+		$("#hakusana").focus();
 	});
-	$(document.body).on("keydown", function(event){
-		  if(event.which==13){ //Kun Enteriä on painettu, ajetaan haku
-			  haeVeneet();
-		  }
-	});
+	
 	$("#hakusana").focus();
 	
 	$("#tyhjennys").click(function() {
 		$('#hakusana').val('');
 		haeVeneet();
-	    });
-});
+   });
 
+	
+});
 </script>
-</body>
 </html>

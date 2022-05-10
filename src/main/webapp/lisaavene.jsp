@@ -3,20 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="scripts/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="scripts/main.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Roboto&display=swap" rel="stylesheet">
 <meta charset="ISO-8859-1">
+<style>
+html { background-image:url(images/marina2.jpg); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
 <title>Veneen lisäys</title>
 </head>
 <body>
 	<div class="container">
 		<form id="lisaa">
-			<table id="taulu" border="1">
+			<table id="taulu" border="1" class="listaus">
 				<thead>	
 					<tr>
-						<th colspan="6"><a href="listaaveneet.jsp">Takaisin venelistaukseen</a></th>
+					
+						<th colspan="6"><a href="listaaveneet.jsp">Takaisin venelistaukseen</a><span id="ilmo">Veneen lisäys</span></th>
 					</tr>
 					<tr>
 						<th>Nimi</th>
@@ -41,6 +51,7 @@
 			</table>
 		</form>
 	</div>
+</body>
 <script>
 $(document).ready(function(){
 	$("#nimi").focus();
@@ -56,7 +67,7 @@ $(document).ready(function(){
 			},
 			pituus:  {
 				required: true,
-				min: 5,
+				min: 3,
 				max: 90,
 				number: true
 			},	
@@ -104,9 +115,7 @@ $(document).ready(function(){
 			
 		}		
 	});
-});
+})
 
 </script>
-
-</body>
 </html>

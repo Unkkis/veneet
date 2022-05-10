@@ -1,0 +1,77 @@
+body {
+	font-family: 'Roboto', sans-serif, Arial;
+}
+
+a:link, a:visited {
+  background-color: #0080ff;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: blue;
+}
+.container{
+	width:50%;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.listaus{
+  	border: 1px solid;
+  	border-collapse: collapse;
+}
+.listaus a{
+	text-decoration: none;
+}
+.listaus a:hover{
+	text-decoration: underline;
+}
+
+.listaus tr {
+	text-align: left;
+}
+
+.listaus td, #listaus th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+.listaus th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #74b5df;
+  color: white;
+}
+.listaus tr:nth-child(odd) {background-color: #ffffff;}
+.listaus tr:nth-child(even) {background-color: #f2f2f2;}
+.listaus tr:hover {background-color: #ddd;}
+#haku{
+	text-align: right;
+}
+#poista{
+	color:white;
+	cursor: pointer;
+}
+#poista:hover{
+	color:red;
+	text-decoration: underline;
+}
+#ilmo{
+	float: right;
+}
+/* Chrome, Safari, Edge, Opera numerokenttien nuolien poisto */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox numerokenttien nuolien poisto */
+input[type=number] {
+  -moz-appearance: textfield;
+}

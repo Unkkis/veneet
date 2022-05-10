@@ -17,6 +17,9 @@ function formDataJsonStr(formArray) {
 	return JSON.stringify(returnArray);
 }
 
+
+
+
 function haeVeneet(){
 	$("#listaus tbody").empty();
 	$.ajax({url:"veneet/"+$("#hakusana").val(), type:"GET", dataType:"json", success:function(result){
@@ -31,7 +34,7 @@ function haeVeneet(){
         	htmlStr+="<td>"+field.leveys+"</td>";
         	htmlStr+="<td>"+field.hinta+"</td>";
         	htmlStr+="<td><a href='muutavene.jsp?tunnus="+field.tunnus+"'>Muuta</a>&nbsp";
-        	htmlStr+="<a href='#' id='poista' onclick=poista('"+field.tunnus+"','"+field.nimi+"')>Poista</a></td>"
+        	htmlStr+="<a href='#' id='poista' onclick=poista('"+field.tunnus+"','"+field.nimi+"')>Poista</a></td>";
         	htmlStr+="</tr>";
         	$("#listaus tbody").append(htmlStr);
         	
@@ -39,10 +42,10 @@ function haeVeneet(){
 	}});
 }
 function poista(tunnus, nimi){
-	if(confirm("Poistetaanko vene tunnus: "+tunnus+ " nimi: "+nimi+"?")){
+	if(confirm("Poistetaanko vene numero "+tunnus+ " nimi: "+nimi+"?")){
 		$.ajax({url:"veneet/"+tunnus, type:"DELETE", dataType:"json", success:function(result){
 			if(result.response==0){
-				alert("Veneen " + tunnus + " poisto ep√§onnistui.");
+				alert("Veneen " + tunnus + " poisto ep‰onnistui.");
 			}else if(result.response==1){
 				alert("Veneen tunnus:" + tunnus + " nimi: "+nimi+" poisto onnistui.");
 				haeVeneet();
@@ -51,15 +54,29 @@ function poista(tunnus, nimi){
 	}
 	
 }
+
+function paivitaTiedot(){
+	var formJsonStr = formDataJsonStr($("#muokkaa").serializeArray()); //muutetaan lomakkeen tiedot json-stringiksi
+	console.log(formJsonStr);
+	$.ajax({url:"veneet", data:formJsonStr, type:"PUT", dataType:"json", success:function(result) { //result on joko {"response:1"} tai {"response:0"}       
+		if(result.response==0){
+      	$("#ilmo").html("Veneen muokkaaminen ep‰onnistui.");
+      	return true;
+      }else if(result.response==1){			
+      	$("#ilmo").html("Veneen muokkaaminen onnistui.");
+      	$("#nimi, #merkkimalli, #pituus, #leveys, #hinta").val("");
+		}
+  }});	
+}
 function lisaaVene(){
 	var formJsonStr = formDataJsonStr($("#lisaa").serializeArray()); //muutetaan lomakkeen tiedot json-stringiksi
 	console.log(formJsonStr);
 	$.ajax({url:"veneet", data:formJsonStr, type:"POST", dataType:"json", success:function(result) { //result on joko {"response:1"} tai {"response:0"}       
 		if(result.response==0){
-      	$("#ilmo").html("Veneen lis√§√§minen ep√§onnistui.");
+      	$("#ilmo").html("Veneen lis‰‰minen ep‰onnistui");
       	return true;
       }else if(result.response==1){			
-      	$("#ilmo").html("Veneen lis√§√§minen onnistui.");
+      	$("#ilmo").html("Veneen lis‰‰minen onnistui!");
       	$("#nimi, #merkkimalli, #pituus, #leveys, #hinta").val("");
 		}
   }});	
